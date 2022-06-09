@@ -3,6 +3,7 @@ package com.techelevator.view;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.Scanner;
 
 public class Menu {
@@ -22,6 +23,16 @@ public class Menu {
 			choice = getChoiceFromUserInput(options);
 		}
 		return choice;
+	}
+
+	public BigDecimal getMoney() {
+		BigDecimal insertedMoney = in.nextBigDecimal();
+		in.nextLine();
+		return  insertedMoney;
+	}
+
+	public String getItemCode() {
+		return in.nextLine();
 	}
 
 	private Object getChoiceFromUserInput(Object[] options) {
