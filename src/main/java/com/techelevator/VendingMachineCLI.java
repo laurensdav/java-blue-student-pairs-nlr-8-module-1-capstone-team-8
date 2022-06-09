@@ -27,9 +27,10 @@ public class VendingMachineCLI {
 	boolean menuRunning = true;
 
 	public void run() throws FileNotFoundException {
+		VendingMachine vendingMachine = new VendingMachine();
+		vendingMachine.stockVendingMachine();
+
 		while (menuRunning) {
-			VendingMachine vendingMachine = new VendingMachine();
-			vendingMachine.stockVendingMachine();
 			System.out.println(vendingMachine.getTotalSales());
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
