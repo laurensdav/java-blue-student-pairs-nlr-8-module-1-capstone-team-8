@@ -2,12 +2,12 @@ package com.techelevator;
 
 import java.math.BigDecimal;
 
-public class Snack {
+public abstract class Snack {
 
     private String name;
     private BigDecimal price;
     private String type;
-    private int quantity = 5;
+    private int quantity;
 
 
 
@@ -37,5 +37,10 @@ public class Snack {
         this.name = name;
         this.price = price;
         this.type = type;
+        this.quantity = 5;
     }
+
+    public abstract void SnackSound ();
+
+
 }

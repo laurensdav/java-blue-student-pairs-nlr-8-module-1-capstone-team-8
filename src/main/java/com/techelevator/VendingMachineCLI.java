@@ -4,6 +4,7 @@ import com.techelevator.view.Menu;
 
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
+import java.util.Locale;
 
 public class VendingMachineCLI {
 
@@ -31,7 +32,6 @@ public class VendingMachineCLI {
 		vendingMachine.stockVendingMachine();
 
 		while (menuRunning) {
-			System.out.println(vendingMachine.getTotalSales());
 			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
@@ -73,12 +73,13 @@ public class VendingMachineCLI {
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 				System.out.println("Please enter slot ID: ");
-				slotID = menu.getItemCode();
+				slotID = menu.getItemCode().toUpperCase(Locale.ROOT);
 				vendingMachine.selectSnack(slotID);
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 				//finish transaction
 				System.out.println("Refunding: $" + vendingMachine.getCurrentMoney());
+				vendingMachine.resetCurrentMoney();
 				purchaseMenuRunning = false;
 			}
 		}
@@ -90,11 +91,7 @@ public class VendingMachineCLI {
 
 
 
-//	String choiceTwo = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
-//	while {String choiceTwo = (String) menu.getChoiceFromOptions(PURCHASE_MENU_OPTIONS);
-//			if (!choiceTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION))
-//
-//	}
+
 
 
 
