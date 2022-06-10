@@ -1,8 +1,9 @@
 package com.techelevator;
 
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.*;
 
 public class VendingMachine {
@@ -90,14 +91,50 @@ public class VendingMachine {
                     subtractCurrentMoney(currentSnack.getPrice());
                     addSale(currentSnack.getPrice());
 
+                    printToLog(currentSnack.getName() + " " + slotID, currentSnack.getPrice());
                     System.out.println("Dispensing: " + currentSnack.getName() + ", $" + currentSnack.getPrice());
-                    System.out.println("Remaining money: $" + getCurrentMoney());
+                    System.out.println("Remaining Money: $" + getCurrentMoney());
                     currentSnack.SnackSound();
                 } else if (currentSnack.getQuantity() <=0) {
                     System.out.println("Sold Out");
                 }
             }
         }
+    }
+
+    public void printToLog(String transaction, BigDecimal transactionAmount) {
+        File logFile = new File("Log.txt");
+        boolean append = logFile.exists();
+
+        try (PrintWriter writer = new PrintWriter(new FileOutputStream(logFile, append))) {
+            DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
+            String currentTime = formatter.format(new Date()).toString();
+
+            writer.append(currentTime + " " + transaction + " $" + transactionAmount + " $" + getCurrentMoney() + "\n" );
+        } catch (IOException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public void generateSalesReport() {
+        DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss");
+        String currentTime = formatter.format(new Date()).toString();
+        String fileName = "sales_report_" + currentTime + ".txt";
+        File salesReport = new File(fileName);
+
+        try (PrintWriter writer = new PrintWriter(salesReport)) {
+            for (Map.Entry<String, Snack> entry : inventory.entrySet()) {
+                int quantitySold = 5 - entry.getValue().getQuantity();
+                writer.println(entry.getValue().getName() + "|" + quantitySold);
+            }
+
+            writer.println();
+            writer.println("**TOTAL SALES** $" + getTotalSales());
+        } catch (FileNotFoundException e) {
+            System.out.println(e.getMessage());
+        }
+
+
     }
 }
 

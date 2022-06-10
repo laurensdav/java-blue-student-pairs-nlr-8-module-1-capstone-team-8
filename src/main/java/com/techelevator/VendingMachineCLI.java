@@ -2,6 +2,7 @@ package com.techelevator;
 
 import com.techelevator.view.Menu;
 
+
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -11,11 +12,12 @@ public class VendingMachineCLI {
 	private static final String MAIN_MENU_OPTION_DISPLAY_ITEMS = "Display Vending Machine Items";
 	private static final String MAIN_MENU_OPTION_PURCHASE = "Purchase";
 	private static final String MAIN_MENU_OPTION_EXIT = "Exit";
-	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT };
+	private static final String MAIN_MENU_OPTION_SALES_REPORT = "Sales Report";
+	private static final String[] MAIN_MENU_OPTIONS = { MAIN_MENU_OPTION_DISPLAY_ITEMS, MAIN_MENU_OPTION_PURCHASE, MAIN_MENU_OPTION_EXIT, MAIN_MENU_OPTION_SALES_REPORT };
 
-	private static final String PURCHASE_MENU_FEED_MONEY = "Please feed money";
-	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select product";
-	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish transaction";
+	private static final String PURCHASE_MENU_FEED_MONEY = "Feed Money";
+	private static final String PURCHASE_MENU_SELECT_PRODUCT = "Select Product";
+	private static final String PURCHASE_MENU_FINISH_TRANSACTION = "Finish Transaction";
 	private static final String[] PURCHASE_MENU_OPTIONS = { PURCHASE_MENU_FEED_MONEY, PURCHASE_MENU_SELECT_PRODUCT, PURCHASE_MENU_FINISH_TRANSACTION };
 
 
@@ -43,7 +45,11 @@ public class VendingMachineCLI {
 
 			} else if (choice.equals(MAIN_MENU_OPTION_EXIT)) {
 					menuRunning = false;
-				}
+			} else if (choice.equals(MAIN_MENU_OPTION_SALES_REPORT)) {
+					vendingMachine.generateSalesReport();
+
+			}
+
 			}
 		}
 
@@ -58,7 +64,6 @@ public class VendingMachineCLI {
 
 	public void runPurchaseMenu(Menu menu, VendingMachine vendingMachine) {
 		boolean purchaseMenuRunning = true;
-		String slotID;
 
 		while (purchaseMenuRunning) {
 
@@ -69,20 +74,53 @@ public class VendingMachineCLI {
 
 			if (choiceTwo.equals(PURCHASE_MENU_FEED_MONEY)) {
 				System.out.println("Please insert dollar bills only: ");
-				vendingMachine.addCurrentMoney(menu.getMoney());
+				BigDecimal insertedAmount = menu.getMoney();
+				vendingMachine.addCurrentMoney(insertedAmount);
+				vendingMachine.printToLog("FEED MONEY:", insertedAmount);
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 				System.out.println("Please enter slot ID: ");
-				slotID = menu.getItemCode().toUpperCase(Locale.ROOT);
+				String slotID = menu.getItemCode().toUpperCase(Locale.ROOT);
 				vendingMachine.selectSnack(slotID);
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {
 				//finish transaction
-				System.out.println("Refunding: $" + vendingMachine.getCurrentMoney());
+				BigDecimal refundAmount = vendingMachine.getCurrentMoney();
+				refundChange(refundAmount);
 				vendingMachine.resetCurrentMoney();
+				vendingMachine.printToLog("GIVE CHANGE:", refundAmount);
 				purchaseMenuRunning = false;
 			}
 		}
+	}
+
+	public void refundChange(BigDecimal change) {
+
+		BigDecimal quarter = BigDecimal.valueOf(0.25);
+		BigDecimal dime = BigDecimal.valueOf(0.10);
+		BigDecimal nickel = BigDecimal.valueOf(0.05);
+
+		int refundedQuarters = change.divide(quarter).intValue();
+		int refundedDimes = change.remainder(quarter).divide(dime).intValue();
+		int refundedNickels = change.remainder(quarter).remainder(dime).divide(nickel).intValue();
+
+		String refundMessage = "Refunding: ";
+
+		if (refundedQuarters == 0) {
+			refundMessage += "$0.00";
+		}
+		if (refundedQuarters > 0) {
+			refundMessage += refundedQuarters + " quarter(s) ";
+		}
+		if (refundedDimes > 0) {
+			refundMessage += refundedDimes + " dime(s) ";
+		}
+		if (refundedNickels > 0) {
+			refundMessage += refundedNickels + " nickel(s)";
+		}
+
+		System.out.println(refundMessage);
+
 	}
 
 

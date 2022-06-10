@@ -28,6 +28,12 @@ public class Menu {
 	public BigDecimal getMoney() {
 		BigDecimal insertedMoney = in.nextBigDecimal();
 		in.nextLine();
+		try {
+			insertedMoney.intValueExact();
+		} catch (ArithmeticException e) {
+			insertedMoney = BigDecimal.valueOf(0);
+			System.out.println("Error: only dollars accepted");
+		}
 		return  insertedMoney;
 	}
 
