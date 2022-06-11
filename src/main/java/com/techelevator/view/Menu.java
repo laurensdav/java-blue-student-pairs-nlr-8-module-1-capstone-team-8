@@ -4,6 +4,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Menu {
@@ -26,13 +27,17 @@ public class Menu {
 	}
 
 	public BigDecimal getMoney() {
-		BigDecimal insertedMoney = in.nextBigDecimal();
-		in.nextLine();
+		BigDecimal insertedMoney = BigDecimal.valueOf(0);
+
 		try {
+			insertedMoney = in.nextBigDecimal();
+			in.nextLine();
 			insertedMoney.intValueExact();
 		} catch (ArithmeticException e) {
 			insertedMoney = BigDecimal.valueOf(0);
 			System.out.println("Error: only dollars accepted");
+		} catch (InputMismatchException e) {
+			System.out.println("Error: insert valid currency");
 		}
 		return  insertedMoney;
 	}

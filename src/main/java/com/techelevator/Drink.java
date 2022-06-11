@@ -3,8 +3,8 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class Drink extends Snack{
-    public Drink(String name, BigDecimal price, String type) {
-        super(name, price, type);
+    public Drink(String name, BigDecimal price) {
+        super(name, price);
     }
 
     @Override

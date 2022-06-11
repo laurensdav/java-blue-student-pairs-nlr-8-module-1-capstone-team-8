@@ -13,14 +13,14 @@ public class VendingMachine {
     BigDecimal currentMoney = BigDecimal.valueOf(0);
 
     public Snack getSnackType(String name, BigDecimal price, String type) {
-        if ( type.equals("Candy") ) {
-           return new Candy(name, price, type);
-        } if ( type.equals("Chip")) {
-            return new Chip(name, price, type);
+        if (type.equals("Candy") ) {
+           return new Candy(name, price);
+        } if (type.equals("Chip")) {
+            return new Chip(name, price);
         } if (type.equals("Drink")) {
-            return new Drink(name, price, type);
+            return new Drink(name, price);
         } if (type.equals("Gum")) {
-            return new Gum(name, price, type);
+            return new Gum(name, price);
         }
         return null;
     }
@@ -28,7 +28,7 @@ public class VendingMachine {
 
 
     public BigDecimal getTotalSales() {
-        return totalSales;
+        return totalSales.setScale(2);
     }
 
     public BigDecimal getCurrentMoney() {
@@ -42,12 +42,12 @@ public class VendingMachine {
                 while (scanner.hasNextLine()) {
                     String lineFromFile = scanner.nextLine();
                     String [] lineArray = lineFromFile.split("\\|");
-                   Snack newSnack = getSnackType(lineArray[1], new BigDecimal(lineArray[2]), lineArray[3]);
 
+                    Snack newSnack = getSnackType(lineArray[1], new BigDecimal(lineArray[2]), lineArray[3]);
                     inventory.put( lineArray[0], newSnack);
                 }
             }
-        }else if (!inputFile.exists()) System.out.println("file not found");
+        } else if (!inputFile.exists()) System.out.println("file not found");
     }
 
     public void printInventory() {
@@ -101,8 +101,8 @@ public class VendingMachine {
                 } else if (currentSnack.getQuantity() <=0) {
                     System.out.println("Sold Out");
                 }
-            }
-        }else System.out.println("Please select valid product code");
+            } else System.out.println("Error: please insert more money");
+        } else System.out.println("Error: please select valid product code");
     }
 
     public void printToLog(String transaction, BigDecimal transactionAmount) {

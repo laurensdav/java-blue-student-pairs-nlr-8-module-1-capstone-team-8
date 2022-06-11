@@ -1,8 +1,6 @@
 package com.techelevator;
 
 import com.techelevator.view.Menu;
-
-
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 import java.util.Locale;
@@ -87,7 +85,7 @@ public class VendingMachineCLI {
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_SELECT_PRODUCT)) {
 				System.out.println("Please enter slot ID: ");
-				String slotID = menu.getItemCode().toUpperCase(Locale.ROOT);
+				String slotID = menu.getItemCode().toUpperCase(Locale.ROOT).trim();
 				vendingMachine.selectSnack(slotID);
 
 			} else if (choiceTwo.equals(PURCHASE_MENU_FINISH_TRANSACTION)) {

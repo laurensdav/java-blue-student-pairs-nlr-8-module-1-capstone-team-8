@@ -4,6 +4,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
@@ -30,6 +31,18 @@ public class VendingMachineTest {
         Assert.assertEquals(expected, testVendingMachine.getTotalSales());
     }
 
+    @Test
+    public void testing_sold_out_quantity() {
+        testVendingMachine.selectSnack("C2");
+        testVendingMachine.selectSnack("C2");
+        testVendingMachine.selectSnack("C2");
+        testVendingMachine.selectSnack("C2");
+        testVendingMachine.selectSnack("C2");
+
+        int expected = 0;
+
+        Assert.assertEquals(expected, testVendingMachine.inventory.get("C2").getQuantity());
+    }
 
 
 

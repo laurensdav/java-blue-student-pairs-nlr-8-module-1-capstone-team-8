@@ -4,8 +4,8 @@ import java.math.BigDecimal;
 
 public class Chip extends Snack{
 
-    public Chip(String name, BigDecimal price, String type) {
-        super(name, price, type);
+    public Chip(String name, BigDecimal price) {
+        super(name, price);
     }
 
     @Override

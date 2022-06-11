@@ -3,8 +3,8 @@ package com.techelevator;
 import java.math.BigDecimal;
 
 public class Gum extends Snack{
-    public Gum(String name, BigDecimal price, String type) {
-        super(name, price, type);
+    public Gum(String name, BigDecimal price) {
+        super(name, price);
     }
 
     @Override
