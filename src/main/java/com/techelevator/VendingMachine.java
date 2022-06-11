@@ -32,7 +32,7 @@ public class VendingMachine {
     }
 
     public BigDecimal getCurrentMoney() {
-        return currentMoney;
+        return currentMoney.setScale(2);
     }
 
     public void stockVendingMachine () throws FileNotFoundException {
@@ -43,7 +43,7 @@ public class VendingMachine {
                     String lineFromFile = scanner.nextLine();
                     String [] lineArray = lineFromFile.split("\\|");
                    Snack newSnack = getSnackType(lineArray[1], new BigDecimal(lineArray[2]), lineArray[3]);
-                  //  Snack newSnack = new Snack(lineArray[1], new BigDecimal(lineArray[2]), lineArray[3]);
+
                     inventory.put( lineArray[0], newSnack);
                 }
             }
@@ -57,7 +57,10 @@ public class VendingMachine {
             BigDecimal price = entry.getValue().getPrice();
             int quantity = entry.getValue().getQuantity();
 
-            System.out.println("(" + slotNumber + ") " + name + " $" + price + " quantity: " + quantity);
+            if (quantity > 0) {
+
+                System.out.println("(" + slotNumber + ") " + name + " $" + price + " quantity: " + quantity);
+            } else System.out.println("Sold Out");
         }
     }
 
@@ -99,7 +102,7 @@ public class VendingMachine {
                     System.out.println("Sold Out");
                 }
             }
-        }
+        }else System.out.println("Please select valid product code");
     }
 
     public void printToLog(String transaction, BigDecimal transactionAmount) {
@@ -110,7 +113,7 @@ public class VendingMachine {
             DateFormat formatter = new SimpleDateFormat("MM/dd/yyyy hh:mm:ss aa");
             String currentTime = formatter.format(new Date()).toString();
 
-            writer.append(currentTime + " " + transaction + " $" + transactionAmount + " $" + getCurrentMoney() + "\n" );
+            writer.append(currentTime + " " + transaction + " $" + transactionAmount.setScale(2) + " $" + getCurrentMoney() + "\n" );
         } catch (IOException e) {
             System.out.println(e.getMessage());
         }

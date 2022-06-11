@@ -22,9 +22,12 @@ public class VendingMachineCLI {
 
 
 	private Menu menu;
+	private Menu hiddenMenu;
 
-	public VendingMachineCLI(Menu menu) {
+	public VendingMachineCLI(Menu menu, Menu hiddenMenu) {
+
 		this.menu = menu;
+		this.hiddenMenu = hiddenMenu;
 	}
 
 	boolean menuRunning = true;
@@ -34,7 +37,7 @@ public class VendingMachineCLI {
 		vendingMachine.stockVendingMachine();
 
 		while (menuRunning) {
-			String choice = (String) menu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
+			String choice = (String) hiddenMenu.getChoiceFromOptions(MAIN_MENU_OPTIONS);
 
 			if (choice.equals(MAIN_MENU_OPTION_DISPLAY_ITEMS)) {
 				// display vending machine items
@@ -57,8 +60,12 @@ public class VendingMachineCLI {
 	public static void main(String[] args) throws FileNotFoundException {
 
 		Menu menu = new Menu(System.in, System.out);
-		VendingMachineCLI cli = new VendingMachineCLI(menu);
+		Menu hiddenMenu = new HiddenMenu(System.in, System.out);
+
+		VendingMachineCLI cli = new VendingMachineCLI(menu, hiddenMenu);
 		cli.run();
+
+
 
 	}
 
