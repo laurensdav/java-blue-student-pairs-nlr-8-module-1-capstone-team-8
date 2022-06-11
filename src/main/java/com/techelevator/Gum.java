@@ -8,7 +8,7 @@ public class Gum extends Snack{
     }
 
     @Override
-    public void SnackSound() {
+    public void snackSound() {
         System.out.println("Chew Chew, Pop!");
     }
 }

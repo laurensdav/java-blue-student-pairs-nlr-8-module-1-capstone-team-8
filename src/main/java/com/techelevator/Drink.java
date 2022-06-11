@@ -8,7 +8,7 @@ public class Drink extends Snack{
     }
 
     @Override
-    public void SnackSound() {
+    public void snackSound() {
         System.out.println("Cheers Glug, Glug!");
     }
 }

@@ -2,11 +2,12 @@ package com.techelevator.view;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
+import java.io.PrintStream;
+import java.math.BigDecimal;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
-import org.junit.FixMethodOrder;
+import com.techelevator.Gum;
+import com.techelevator.Snack;
+import org.junit.*;
 import org.junit.runners.MethodSorters;
 
 import com.techelevator.view.Menu;
@@ -19,6 +20,15 @@ public class MenuTest {
 	@Before
 	public void setup() {
 		output = new ByteArrayOutputStream();
+		System.setOut(new PrintStream(output));
+	}
+
+	@Test
+	public void testing_gum_displays_correct_message() {
+		Snack testGum = new Gum("Bubble Gum", BigDecimal.valueOf(1.50));
+		testGum.snackSound();
+
+		Assert.assertEquals("Chew Chew, Pop!", output.toString().trim());
 	}
 
 	@Test
@@ -96,5 +106,10 @@ public class MenuTest {
 
 	private Menu getMenuForTesting() {
 		return getMenuForTestingWithUserInput("1" + System.lineSeparator());
+	}
+
+	@After
+	public void tearDown() {
+		System.setOut(System.out);
 	}
 }

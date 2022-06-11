@@ -9,7 +9,7 @@ public class Chip extends Snack{
     }
 
     @Override
-    public void SnackSound() {
+    public void snackSound() {
         System.out.println("Crunch Crunch, Crunch!");
     }
 }

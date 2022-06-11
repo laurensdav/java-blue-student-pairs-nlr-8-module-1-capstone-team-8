@@ -31,7 +31,7 @@ public abstract class Snack {
         this.quantity = 5;
     }
 
-    public abstract void SnackSound ();
+    public abstract void snackSound();
 
 
 }

@@ -10,7 +10,7 @@ public class Candy extends Snack{
     }
 
     @Override
-    public void SnackSound() {
+    public void snackSound() {
         System.out.println("Munch Munch, Mmm-Good!");
     }
 }

@@ -30,7 +30,7 @@ public class VendingMachineCLI {
 
 	boolean menuRunning = true;
 
-	public void run() throws FileNotFoundException {
+	public void run() {
 		VendingMachine vendingMachine = new VendingMachine();
 		vendingMachine.stockVendingMachine();
 
@@ -55,7 +55,7 @@ public class VendingMachineCLI {
 		}
 
 
-	public static void main(String[] args) throws FileNotFoundException {
+	public static void main(String[] args) {
 
 		Menu menu = new Menu(System.in, System.out);
 		Menu hiddenMenu = new HiddenMenu(System.in, System.out);
@@ -127,16 +127,6 @@ public class VendingMachineCLI {
 		System.out.println(refundMessage);
 
 	}
-
-
-
-
-
-
-
-
-
-
 
 
 	}

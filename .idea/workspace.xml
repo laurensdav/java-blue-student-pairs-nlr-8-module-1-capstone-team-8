@@ -37,7 +37,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
-  <component name="RunManager" selected="JUnit.SnackTest">
+  <component name="RunManager" selected="Application.VendingMachineCLI">
     <configuration name="VendingMachineCLI" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="ALTERNATIVE_JRE_PATH" value="11" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
@@ -54,7 +54,7 @@
       </method>
     </configuration>
     <configuration name="MenuTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="m1-java-capstone-vending-machine" />
+      <module name="nlr-8-module-1-capstone-team-8" />
       <extension name="coverage">
         <pattern>
           <option name="PATTERN" value="com.techelevator.view.*" />
@@ -68,7 +68,23 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="SnackTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="MenuTest.testing_gum_displays_correct_message" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="nlr-8-module-1-capstone-team-8" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="com.techelevator.view.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="com.techelevator.view" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.view.MenuTest" />
+      <option name="METHOD_NAME" value="testing_gum_displays_correct_message" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="PrintTest.testing_gum_displays_correct_message" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="nlr-8-module-1-capstone-team-8" />
       <extension name="coverage">
         <pattern>
@@ -77,13 +93,14 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.techelevator" />
-      <option name="MAIN_CLASS_NAME" value="com.techelevator.SnackTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.PrintTest" />
+      <option name="METHOD_NAME" value="testing_gum_displays_correct_message" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="VendingMachineTest (1)" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="PrintTest.testing_sold_out_quantity" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="nlr-8-module-1-capstone-team-8" />
       <extension name="coverage">
         <pattern>
@@ -92,34 +109,20 @@
         </pattern>
       </extension>
       <option name="PACKAGE_NAME" value="com.techelevator" />
-      <option name="MAIN_CLASS_NAME" value="com.techelevator.VendingMachineTest" />
-      <option name="TEST_OBJECT" value="class" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="VendingMachineTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
-      <module name="m1-java-capstone-vending-machine" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="com.techelevator.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="PACKAGE_NAME" value="com.techelevator" />
-      <option name="MAIN_CLASS_NAME" value="com.techelevator.VendingMachineTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="MAIN_CLASS_NAME" value="com.techelevator.PrintTest" />
+      <option name="METHOD_NAME" value="testing_sold_out_quantity" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.SnackTest" />
         <item itemvalue="Application.VendingMachineCLI" />
-        <item itemvalue="JUnit.VendingMachineTest (1)" />
-        <item itemvalue="JUnit.VendingMachineTest" />
         <item itemvalue="JUnit.MenuTest" />
+        <item itemvalue="JUnit.MenuTest.testing_gum_displays_correct_message" />
+        <item itemvalue="JUnit.PrintTest.testing_sold_out_quantity" />
+        <item itemvalue="JUnit.PrintTest.testing_gum_displays_correct_message" />
       </list>
     </recent_temporary>
   </component>

@@ -35,7 +35,7 @@ public class VendingMachine {
         return currentMoney.setScale(2);
     }
 
-    public void stockVendingMachine () throws FileNotFoundException {
+    public void stockVendingMachine () {
         File inputFile = new File("vendingmachine.csv");
         if (inputFile.exists()) {
             try (Scanner scanner = new Scanner(inputFile)) {
@@ -46,6 +46,8 @@ public class VendingMachine {
                     Snack newSnack = getSnackType(lineArray[1], new BigDecimal(lineArray[2]), lineArray[3]);
                     inventory.put( lineArray[0], newSnack);
                 }
+            } catch (FileNotFoundException e) {
+                System.out.println(e.getMessage());
             }
         } else if (!inputFile.exists()) System.out.println("file not found");
     }
@@ -97,7 +99,7 @@ public class VendingMachine {
                     printToLog(currentSnack.getName() + " " + slotID, currentSnack.getPrice());
                     System.out.println("Dispensing: " + currentSnack.getName() + ", $" + currentSnack.getPrice());
                     System.out.println("Remaining Money: $" + getCurrentMoney());
-                    currentSnack.SnackSound();
+                    currentSnack.snackSound();
                 } else if (currentSnack.getQuantity() <=0) {
                     System.out.println("Sold Out");
                 }
