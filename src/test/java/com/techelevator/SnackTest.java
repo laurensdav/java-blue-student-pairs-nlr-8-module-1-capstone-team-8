@@ -3,8 +3,6 @@ package com.techelevator;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import java.io.FileNotFoundException;
 import java.math.BigDecimal;
 
 public class SnackTest {
@@ -12,7 +10,7 @@ public class SnackTest {
     VendingMachine testVendingMachine = new VendingMachine();
 
     @Before
-    public void setup() throws FileNotFoundException {
+    public void setup() {
         testVendingMachine.stockVendingMachine();
 
     }

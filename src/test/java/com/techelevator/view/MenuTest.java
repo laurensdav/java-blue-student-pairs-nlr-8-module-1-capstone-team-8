@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 
 import com.techelevator.Gum;
 import com.techelevator.Snack;
+import com.techelevator.VendingMachine;
 import org.junit.*;
 import org.junit.runners.MethodSorters;
 
@@ -29,6 +30,15 @@ public class MenuTest {
 		testGum.snackSound();
 
 		Assert.assertEquals("Chew Chew, Pop!", output.toString().trim());
+	}
+
+	@Test
+	public void testing_refund_change_displays_correct_message() {
+		VendingMachine test = new VendingMachine();
+		test.refundChange(BigDecimal.valueOf(1.15));
+
+		String expected = "Refunding: 4 quarter(s) 1 dime(s) 1 nickel(s)";
+		Assert.assertEquals(expected, output.toString().trim());
 	}
 
 	@Test

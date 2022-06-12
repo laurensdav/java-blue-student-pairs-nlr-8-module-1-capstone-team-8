@@ -12,21 +12,7 @@ public class VendingMachine {
     BigDecimal totalSales = BigDecimal.valueOf(0);
     BigDecimal currentMoney = BigDecimal.valueOf(0);
 
-    public Snack getSnackType(String name, BigDecimal price, String type) {
-        if (type.equals("Candy") ) {
-           return new Candy(name, price);
-        } if (type.equals("Chip")) {
-            return new Chip(name, price);
-        } if (type.equals("Drink")) {
-            return new Drink(name, price);
-        } if (type.equals("Gum")) {
-            return new Gum(name, price);
-        }
-        return null;
-    }
-
-
-
+    // Getters
     public BigDecimal getTotalSales() {
         return totalSales.setScale(2);
     }
@@ -35,6 +21,7 @@ public class VendingMachine {
         return currentMoney.setScale(2);
     }
 
+    // Stock vending and create Snack objects
     public void stockVendingMachine () {
         File inputFile = new File("vendingmachine.csv");
         if (inputFile.exists()) {
@@ -52,6 +39,20 @@ public class VendingMachine {
         } else if (!inputFile.exists()) System.out.println("file not found");
     }
 
+    public Snack getSnackType(String name, BigDecimal price, String type) {
+        if (type.equals("Candy") ) {
+            return new Candy(name, price);
+        } if (type.equals("Chip")) {
+            return new Chip(name, price);
+        } if (type.equals("Drink")) {
+            return new Drink(name, price);
+        } if (type.equals("Gum")) {
+            return new Gum(name, price);
+        }
+        return null;
+    }
+
+    // Display inventory to user
     public void printInventory() {
         for (Map.Entry<String, Snack> entry : inventory.entrySet()) {
             String slotNumber = entry.getKey();
@@ -66,6 +67,7 @@ public class VendingMachine {
         }
     }
 
+    // Purchase methods
     public void addSale(BigDecimal purchase) {
         totalSales = totalSales.add(purchase);
     }
@@ -81,7 +83,6 @@ public class VendingMachine {
     public void resetCurrentMoney() {
         currentMoney = BigDecimal.valueOf(0);
     }
-
 
 
     public void selectSnack(String slotID) {
@@ -107,6 +108,36 @@ public class VendingMachine {
         } else System.out.println("Error: please select valid product code");
     }
 
+    public void refundChange(BigDecimal change) {
+
+        BigDecimal quarter = BigDecimal.valueOf(0.25);
+        BigDecimal dime = BigDecimal.valueOf(0.10);
+        BigDecimal nickel = BigDecimal.valueOf(0.05);
+
+        int refundedQuarters = change.divide(quarter).intValue();
+        int refundedDimes = change.remainder(quarter).divide(dime).intValue();
+        int refundedNickels = change.remainder(quarter).remainder(dime).divide(nickel).intValue();
+
+        String refundMessage = "Refunding: ";
+
+        if (refundedQuarters == 0) {
+            refundMessage += "$0.00";
+        }
+        if (refundedQuarters > 0) {
+            refundMessage += refundedQuarters + " quarter(s) ";
+        }
+        if (refundedDimes > 0) {
+            refundMessage += refundedDimes + " dime(s) ";
+        }
+        if (refundedNickels > 0) {
+            refundMessage += refundedNickels + " nickel(s)";
+        }
+
+        System.out.println(refundMessage);
+
+    }
+
+    // Print to log
     public void printToLog(String transaction, BigDecimal transactionAmount) {
         File logFile = new File("Log.txt");
         boolean append = logFile.exists();
@@ -121,6 +152,7 @@ public class VendingMachine {
         }
     }
 
+    // Generate sales report
     public void generateSalesReport() {
         DateFormat formatter = new SimpleDateFormat("MM-dd-yyyy_HH-mm-ss");
         String currentTime = formatter.format(new Date()).toString();
@@ -138,7 +170,6 @@ public class VendingMachine {
         } catch (FileNotFoundException e) {
             System.out.println(e.getMessage());
         }
-
 
     }
 }

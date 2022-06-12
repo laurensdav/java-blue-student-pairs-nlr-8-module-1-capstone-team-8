@@ -1,6 +1,4 @@
-package com.techelevator;
-
-import com.techelevator.view.Menu;
+package com.techelevator.view;
 
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -17,9 +15,6 @@ public class HiddenMenu extends Menu {
         out.print(System.lineSeparator() + "Please choose an option >>> ");
         out.flush();
     }
-
-
-
 
     public HiddenMenu(InputStream input, OutputStream output) {
         super(input, output);

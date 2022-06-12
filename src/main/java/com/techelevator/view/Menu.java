@@ -17,15 +17,7 @@ public class Menu {
 		this.in = new Scanner(input);
 	}
 
-	public Object getChoiceFromOptions(Object[] options) {
-		Object choice = null;
-		while (choice == null) {
-			displayMenuOptions(options);
-			choice = getChoiceFromUserInput(options);
-		}
-		return choice;
-	}
-
+	// Purchase methods
 	public BigDecimal getMoney() {
 		BigDecimal insertedMoney = BigDecimal.valueOf(0);
 
@@ -44,6 +36,16 @@ public class Menu {
 
 	public String getItemCode() {
 		return in.nextLine();
+	}
+
+	// Menu methods
+	public Object getChoiceFromOptions(Object[] options) {
+		Object choice = null;
+		while (choice == null) {
+			displayMenuOptions(options);
+			choice = getChoiceFromUserInput(options);
+		}
+		return choice;
 	}
 
 	private Object getChoiceFromUserInput(Object[] options) {
